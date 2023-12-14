@@ -336,8 +336,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c70009f46814143b792b5022b7e8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
   speed: 5
   jumpForce: 2
+  isGrounded: 0
+  groundDistance: 0.6
 --- !u!61 &1209156539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -370,7 +375,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.052481413, y: -0.03816825}
+  m_Offset: {x: 0.052481413, y: -0.04782754}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -381,7 +386,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8759527, y: 0.9236635}
+  m_Size: {x: 0.8759527, y: 0.9429821}
   m_EdgeRadius: 0
 --- !u!50 &1209156540
 Rigidbody2D:
@@ -421,7 +426,7 @@ GameObject:
   - component: {fileID: 1972984388}
   - component: {fileID: 1972984387}
   - component: {fileID: 1972984389}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
