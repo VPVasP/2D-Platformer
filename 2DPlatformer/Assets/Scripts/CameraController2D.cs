@@ -17,6 +17,7 @@ public class CameraController2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         tempPos = player.position;
         y = tempPos.y;
         z = transform.position.z;

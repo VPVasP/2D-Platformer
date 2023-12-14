@@ -10,15 +10,16 @@ public class Controller : MonoBehaviour
     float inpHor;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce;
-    SpriteRenderer spriteRenderer;
     [SerializeField] bool isGrounded = false;
     [SerializeField] float groundDistance = 0.6f;
-    // Start is called before the first frame update
+    bool isFacingRight;
+
+  
     void Start()
     {
         thisAnimator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        isFacingRight = true;
     }
 
     // Update is called once per frame
@@ -26,33 +27,33 @@ public class Controller : MonoBehaviour
     {
         inpHor = Input.GetAxis("Horizontal");
         isGrounded = isGroundedBool();
-        //transform.position += Vector3.right * inpHor * speed * Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) &&isGroundedBool())
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGroundedBool())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            PlayerSoundManager.instance.JumpSoundEffect();
         }
-        if (inpHor < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else if (inpHor > 0)
-        {
-            spriteRenderer.flipX = false;
 
-        
+        if (inpHor < 0 && isFacingRight || inpHor > 0 && !isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
         }
+
         thisAnimator.SetFloat("Speed", Mathf.Abs(inpHor));
         thisAnimator.SetBool("isGrounded", isGrounded);
     }
+
     private void FixedUpdate()
     {
-
-        rb.velocity = new Vector2(inpHor *speed, rb.velocity.y);
+        rb.velocity = new Vector2(inpHor * speed, rb.velocity.y);
     }
     bool isGroundedBool()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down,groundDistance,groundMask);
-        if (hit.collider != null) { return true; }
-        else return false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, groundMask);
+        return hit.collider != null;
     }
 }
