@@ -48,4 +48,12 @@ public class Enemy : MonoBehaviour
             reachedDestination = false;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.transform.position = CheckPointsManager.instance.checkPoints[0].transform. position;
+            PlayerSoundManager.instance.PlayHurtSound();
+        }
+    }
 }

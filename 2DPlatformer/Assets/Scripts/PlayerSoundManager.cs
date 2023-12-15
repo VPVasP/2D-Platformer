@@ -8,6 +8,7 @@ public class PlayerSoundManager : MonoBehaviour
     public static PlayerSoundManager instance;
     private AudioSource aud;
     [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip hurtSound;
     private void Awake()
     {
         instance= this;
@@ -24,6 +25,11 @@ public class PlayerSoundManager : MonoBehaviour
     public void JumpSoundEffect()
     {
         aud.clip = jumpSound;
+        aud.Play();
+    }
+    public void PlayHurtSound()
+    {
+        aud.clip = hurtSound;
         aud.Play();
     }
 }

@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour
   
     private AudioSource aud;
     [SerializeField] private AudioClip coinCollectSound;
-  
+    public GameObject coinEffect;
     void Start()
     {
         if (aud == null)
@@ -18,7 +18,10 @@ public class Coin : MonoBehaviour
         aud = GetComponent<AudioSource>();
         aud.playOnAwake = false;
     }
-
+    private void Update()
+    {
+        transform.Rotate(Vector2.up * 100* Time.deltaTime);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
@@ -26,6 +29,7 @@ public class Coin : MonoBehaviour
             Destroy(this.gameObject,0.3f);
             aud.clip = coinCollectSound;
             aud.Play();
+            Instantiate(coinEffect, this.transform.position, Quaternion.identity);
             CurrencyManager.instance.AddCoins();
             UIManager.instance.UpdateCoinsUI();
         }
