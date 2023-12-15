@@ -11,11 +11,13 @@ public class Enemy : MonoBehaviour
     private int waypointIndex;
     [SerializeField] private bool reachedDestination;
     private Rigidbody rb;
+    private BoxCollider2D boxCollder;
     // Start is called before the first frame update
     void Start()
     {
         waypointIndex = 0;
         rb = GetComponent<Rigidbody>();
+        boxCollder = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -55,5 +57,6 @@ public class Enemy : MonoBehaviour
             collision.transform.position = CheckPointsManager.instance.checkPoints[0].transform. position;
             PlayerSoundManager.instance.PlayHurtSound();
         }
+      
     }
 }
