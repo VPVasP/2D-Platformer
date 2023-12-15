@@ -30,8 +30,7 @@ public class Controller : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGroundedBool())
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
-            PlayerSoundManager.instance.JumpSoundEffect();
+            Jump();
         }
 
         if (inpHor < 0 && isFacingRight || inpHor > 0 && !isFacingRight)
@@ -50,6 +49,11 @@ public class Controller : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(inpHor * speed, rb.velocity.y);
+    }
+    public void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+        PlayerSoundManager.instance.JumpSoundEffect();
     }
     bool isGroundedBool()
     {

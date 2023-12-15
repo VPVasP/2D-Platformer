@@ -33029,6 +33029,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4042736320167429174, guid: f408d8b8217066c4196f06e97caadb35, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0915254
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042736320167429174, guid: f408d8b8217066c4196f06e97caadb35, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.045763433
+      objectReference: {fileID: 0}
     - target: {fileID: 8618583985690824920, guid: f408d8b8217066c4196f06e97caadb35, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 

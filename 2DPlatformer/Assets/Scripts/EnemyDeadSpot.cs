@@ -23,7 +23,7 @@ public class EnemyDeadSpot : MonoBehaviour
     
         if (collision.CompareTag("Player"))
         {
-     
+            collision.GetComponent<Controller>().Jump();
             EnemySoundManager.instance.PlayDeadSound();
             Instantiate(smokeEffect, this.transform.position, Quaternion.identity);
             Destroy(transform.parent.gameObject);
