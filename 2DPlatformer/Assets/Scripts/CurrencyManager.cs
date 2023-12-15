@@ -1,16 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
+    public static CurrencyManager instance;
     public int currentCoins;
     private string coins = "Coins: ";
-    public TextMeshProUGUI coinsText;
+ 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         currentCoins = 0;
-        coinsText.text = coins + currentCoins.ToString();
+        
+          
+           
+        
+    }
+    public void AddCoins()
+    {
+        currentCoins += 1;
+        
     }
 }
