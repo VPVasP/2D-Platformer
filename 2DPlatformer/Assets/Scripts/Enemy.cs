@@ -10,13 +10,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     private int waypointIndex;
     [SerializeField] private bool reachedDestination;
-    private Rigidbody rb;
+    private Rigidbody2D rb;
     private BoxCollider2D boxCollder;
     // Start is called before the first frame update
     void Start()
     {
         waypointIndex = 0;
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         boxCollder = GetComponent<BoxCollider2D>();
     }
 
@@ -56,6 +56,11 @@ public class Enemy : MonoBehaviour
         {
             collision.transform.position = CheckPointsManager.instance.checkPoints[0].transform. position;
             PlayerSoundManager.instance.PlayHurtSound();
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.None;
         }
       
     }
