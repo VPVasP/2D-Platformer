@@ -7,8 +7,8 @@ using UnityEngine;
 public class CurrencyManager : MonoBehaviour
 {
     public static CurrencyManager instance;
-    public int currentCoins;
-    private string coins = "Coins: ";
+    public int currentCoins; //our currectcoins value
+    private string coins = "Coins: "; //our string coins
  
     private void Awake()
     {
@@ -17,14 +17,10 @@ public class CurrencyManager : MonoBehaviour
     private void Start()
     {
         currentCoins = 0;
-        
-          
-           
-        
     }
     public void AddCoins()
     {
-        currentCoins += 1;
+        currentCoins += 1; //we add 1 coin 
         
     }
 }

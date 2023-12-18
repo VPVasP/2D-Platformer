@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class EnemyDeadSpot : MonoBehaviour
 {
-    private AudioSource aud;
- [SerializeField]   private AudioClip enemyDeadSound;
-    public GameObject smokeEffect;
+    private AudioSource aud;//refrence to our audiosource
+    [SerializeField]  private AudioClip enemyDeadSound; //enemy dead sound refrence
+    public GameObject smokeEffect;//smoke effect refrence
     private void Start()
     {
-     
+     //if the audiosource hasnt been added add it and get the component
         if (aud == null)
         {
             this.AddComponent<AudioSource>();
@@ -23,10 +23,14 @@ public class EnemyDeadSpot : MonoBehaviour
     
         if (collision.CompareTag("Player"))
         {
+            //if the player enters the trigger he jumps
             collision.GetComponent<Controller>().Jump();
+            //the enemy sound manager plays the dead sound
             EnemySoundManager.instance.PlayDeadSound();
-            Instantiate(smokeEffect, this.transform.position, Quaternion.identity);
-            Destroy(transform.parent.gameObject);
+            //we instatiate the smoke effect clone and destroy the enemy and the smoke effect clone after a few miliseconds
+            GameObject smokeEffectClone=Instantiate(smokeEffect, this.transform.position, Quaternion.identity);
+            Destroy(transform.parent.gameObject,0.3f);
+            Destroy(smokeEffectClone, 0.2f);
         }
         
     }
