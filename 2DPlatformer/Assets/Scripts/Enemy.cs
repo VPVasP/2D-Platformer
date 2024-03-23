@@ -58,6 +58,7 @@ public class Enemy : MonoBehaviour
         {
             //we teleport the player to the first checkpoint from the checkpoints manager
             collision.transform.position = CheckPointsManager.instance.checkPoints[0].transform. position;
+            HeartsSystem.instance.LoseHearts(); //lose 1 heart
             PlayerSoundManager.instance.PlayHurtSound();//we play a hurt sound of the coins manager
             rb.constraints = RigidbodyConstraints2D.FreezePosition; //we freeze the constrains of the rigibody
         }

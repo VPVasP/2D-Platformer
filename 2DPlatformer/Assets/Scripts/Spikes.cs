@@ -18,6 +18,7 @@ public class Spikes : MonoBehaviour
         {
             //we move the player to the checkpoint manager 0 array element and we play the hurt sound
             collision.transform.position = CheckPointsManager.instance.checkPoints[0].transform.position;
+            HeartsSystem.instance.LoseHearts();//lose 1 heart
             PlayerSoundManager.instance.PlayHurtSound();
         }
     }
